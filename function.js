@@ -23,13 +23,14 @@ printAll('dream', 'coding', 'ellie');
 let globalMessage = 'global';
 function printMessage() {
     let message = 'hello';
-    console.log(message); //local variable ->hello
-    console.log(globalMessage);//global
+    console.log(message); //local variable ->"hello"
+    console.log(globalMessage);//glbal varialbe -> "global"
     function printAnother() {
         console.log(message);//>>가능
         let childMessage = 'hello';
     }
     //console.log(childMessage);>>> 에러발생!
+    printAnother();
 }
 printMessage();
 
@@ -37,7 +38,7 @@ printMessage();
 // bad
 function upgrade(user) {
     if (user.point > 10) {
-        //long upgrade logic...😂
+        //long upgrade logic here...😂
     }
 }
 //good
@@ -45,7 +46,7 @@ function upgrade(user) {
     if (user.point <= 10) {
         return;
     }//제한이 걸리는 경우를 빠르게 먼저 찾고 리턴해버리는게 좋다
-    //long upgrade logic...!
+    //long upgrade logic here...!
 }
 
 //함수 이름이 없이 필요한부분만 작성하여 변수에 할당 : anonymous function
