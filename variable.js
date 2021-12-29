@@ -1,61 +1,115 @@
+// 1. Use strict
+// added in ES 5
+// use this for Vanila Javascript.
 'use strict';
 
-let Name = 'ellie';
-console.log(Name);
-Name = 'hello';
-console.log(Name);
-
-const num1 = 17;
-const num2 = 'test'
-console.log(`value: ${num1}, type: ${typeof num1}`);
-console.log(`value: ${num2}, type: ${typeof num2}`);
-
-const Sum = (a, b) => {
-    return a + b
+// 2. Variable, rw(read/write)
+// let (added in ES6)
+let globalName = 'global name';
+{
+    let name = 'ellie';
+    console.log(name); //ellie
+    name = 'hello';
+    console.log(name); //hello
+    console.log(globalName); //global name
 }
-console.log(Sum(3, 4))
+console.log(name); //아무것도 안나옴
+console.log(globalName); //global name
 
-// let list = [
-//     { date: '2021-06-30 10' },
-//     { date: '2021-07-01 10' },
-//     { date: '2021-07-02 10' },
-//     { date: '2021-07-03 10' },
-//     { date: '2021-07-04 10' },
-// ]
+// var (don't ever use this!)
+// var hoisting (move declaration from bottom to top)
+// has no block scope
+{
+    age = 4;
+    var age;
+}
+console.log(age); //4
 
-// const date = '2021-07-01 10:43:33'
-// const date2 = '2021-07-11'
+// 3. Constant, r(read only)
+// use const whenever possible.
+// only use let if variable needs to change.
+const daysInWeek = 7;
+const maxNumber = 5;
 
-//console.log(parseInt(date2.split('-')[2]) + 1)
-// let num = parseInt(date2.split('-')[2]) + 1;
-//console.log(num);
-//num.toString()
-//console.log(num);
+// Note!
+// Immutable data types: primitive types(원시 타입), frozen objects (i.e. object.freeze())
+//(원시 타입의 데이터는 변수에 할당이 될 때 메모리 상에 고정된 크기로 저장이 되고 해당 변수가 원시 데이터 값을 보관한다. boolean,number,string...)
+//(참고 : Reference Type (참조 타입) ex. Object(array, function, object))
+// Mutable data types: all objects by default are mutable in JS
+// favor immutable data type always for a few reasons:
+//  - security
+//  - thread safety
+//  - reduce human mistakes
 
+// 4. Variable types
+// primitive, single item: number, string, boolean, null, undefined, symbol
+// object, box container
+// function, first-class function
 
+// number
+const count = 17; // integer
+const size = 17.1; // decimal number
+console.log(`value: ${count}, type: ${typeof count}`);
+console.log(`value: ${size}, type: ${typeof size}`);
 
-// var now = new Date(2021, 4, 13);	// 현재 날짜 및 시간
-// console.log("현재 : ", now);
-// var tomorrow = new Date(now.setDate(now.getDate() + 1));	// 내일
-// console.log("내일 : ", tomorrow);
-// const dd = tomorrow.getDate()
-// const mm = tomorrow.getMonth()
-// const yy = tomorrow.getFullYear()
-// console.log(`${yy}-${mm >= 10 ? mm : '0' + mm}-${dd >= 10 ? dd : '0' + dd}`)
-// const hello = `${yy}-${mm >= 10 ? mm : '0' + mm}-${dd >= 10 ? dd : '0' + dd}`
-// console.log(hello, 'hie')
-// console.log(typeof (hello))
+// number - speicla numeric values: infinity, -infinity, NaN
+const infinity = 1 / 0;
+const negativeInfinity = -1 / 0;
+const nAn = 'not a number' / 2;
+console.log(infinity);
+console.log(negativeInfinity);
+console.log(nAn);
 
-// let today = new Date();	//현재날짜
-// let dd = today.getDate()
-// let mm = today.getMonth() + 1
-// let yy = today.getFullYear()
-// let date1 = `${yy}-${mm >= 10 ? mm : '0' + mm}-${dd >= 10 ? dd : '0' + dd}`
-// console.log(date1)
-// let back = new Date(today.setDate(today.getDate() - 30));//30일이내
-// let ddd = back.getDate()
-// let mmm = back.getMonth() + 1
-// let yyy = back.getFullYear()
-// let date2 = `${yyy}-${mmm >= 10 ? mmm : '0' + mmm}-${ddd >= 10 ? ddd : '0' + ddd}`
-// console.log(date2)
+// bigInt (fairly new, don't use it yet)
+const bigInt = 1234567890123456789012345678901234567890n; // over (-2**53) ~ 2*53)
+console.log(`value: ${bigInt}, type: ${typeof bigInt}`);
 
+// string
+const char = 'c';
+const brendan = 'brendan';
+const greeting = 'hello ' + brendan;
+console.log(`value: ${greeting}, type: ${typeof greeting}`);
+const helloBob = `hi ${brendan}!`; //template literals (string)
+console.log(`value: ${helloBob}, type: ${typeof helloBob}`);
+console.log('value: ' + helloBob + ' type: ' + typeof helloBob);
+
+// boolean
+// false: 0, null, undefined, NaN, ''
+// true: any other value
+const canRead = true;
+const test = 3 < 1; // false
+console.log(`value: ${canRead}, type: ${typeof canRead}`);
+console.log(`value: ${test}, type: ${typeof test}`);
+
+// null
+let nothing = null;
+console.log(`value: ${nothing}, type: ${typeof nothing}`);
+
+// undefined
+let x;
+console.log(`value: ${x}, type: ${typeof x}`);
+
+// symbol, create unique identifiers for objects
+const symbol1 = Symbol('id');
+const symbol2 = Symbol('id');
+console.log(symbol1 === symbol2);
+const gSymbol1 = Symbol.for('id');
+const gSymbol2 = Symbol.for('id');
+console.log(gSymbol1 === gSymbol2); // true
+console.log(`value: ${symbol1.description}, type: ${typeof symbol1}`);
+
+// object, real-life object, data structure
+const ellie = { name: 'ellie', age: 20 };
+ellie.age = 21;
+
+// 5. Dynamic typing: dynamically typed language
+let text = 'hello';
+console.log(text.charAt(0)); //h
+console.log(`value: ${text}, type: ${typeof text}`);
+text = 1;
+console.log(`value: ${text}, type: ${typeof text}`);
+text = '7' + 5;
+console.log(`value: ${text}, type: ${typeof text}`);
+text = '8' / '2';
+console.log(`value: ${text}, type: ${typeof text}`);
+console.log(text.charAt(0));
