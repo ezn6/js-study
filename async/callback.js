@@ -13,13 +13,13 @@ function printImmediately(print) {
   //print 라는 콜백함수를 받아서 함수printImmediately 의 인자로 집어넣는것이다.
   print();
 }
-printImmediately(() => console.log('hello'));
+printImmediately(() => console.log('hello')); //동기
 
 // Asynchronous callback
 function printWithDelay(print, timeout) {
   setTimeout(print, timeout);
 }
-printWithDelay(() => console.log('async callback'), 2000);
+printWithDelay(() => console.log('async callback'), 2000); //비동기
 
 //출력순서
 //1 : 동기
